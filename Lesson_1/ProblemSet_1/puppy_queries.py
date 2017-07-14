@@ -16,8 +16,8 @@ all_puppies.all()
 # youngest first
 today = datetime.date.today()
 six_months = today - datetime.timedelta(weeks=24)
-young_puppies = session.query(Puppy).filter(Puppy.dateOfBirth > six_months)
-young_puppies.all()
+young_puppies = session.query(Puppy.name, Puppy.dateOfBirth).\
+    filter(Puppy.dateOfBirth >= six_months).order_by(Puppy.dateOfBirth.desc())
 # Query all the puppies by ascending weight
 fat_puppies = session.query(Puppy).order_by(Puppy.weight)
 
@@ -29,8 +29,8 @@ for i, puppy in enumerate(all_puppies):
 
 print('\n')
 
-for i, puppy in enumerate(young_puppies):
-    print(i, puppy.name, puppy.dateOfBirth)
+for puppy in young_puppies:
+    print('{name}: {dob}'.format(name=puppy[0], dob=puppy[1]))
 
 print('\n')
 
