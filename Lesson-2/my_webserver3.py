@@ -13,9 +13,10 @@ class webserverHandler(BaseHTTPRequestHandler):
                 output = ""
                 output += "<html><body>Hello!"
                 output += """
-            <form method='POST' enctype='multipart/form-data' action='/hello'>
-            <h2>What would you like me to say?</h2><input name='message' type=
-            'text'><input type='submit' value='Submit'></form>"""
+                <form method='POST' enctype='multipart/form-data' action='/hello'>
+                <h2>What would you like me to say?</h2>
+                <input name='message' type='text'>
+                <input type='submit' value='Submit'></form>"""
                 output += "</body></html>"
                 self.wfile.write(output.encode("utf-8"))
                 print(output)
@@ -32,9 +33,10 @@ class webserverHandler(BaseHTTPRequestHandler):
                     <body>&#161Hola!<a href='/hello' >Back to Hello</a>
                     """
                 output += """
-            <form method='POST' enctype='multipart/form-data' action='/hello'>
-            <h2>What would you like me to say?</h2><input name='message' type=
-            'text'><input type='submit' value='Submit'></form>"""
+                <form method='POST' enctype='multipart/form-data' action='/hello'>
+                <h2>What would you like me to say?</h2>
+                <input name='message' type='text'>
+                <input type='submit' value='Submit'></form>"""
                 output += "</body></html>"
                 self.wfile.write(output.encode("utf-8"))
                 print(output)
@@ -46,6 +48,7 @@ class webserverHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         try:
             self.send_response(301)
+            self.send_header('Content-type', 'text/html')
             self.end_headers()
 
             ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
@@ -56,18 +59,19 @@ class webserverHandler(BaseHTTPRequestHandler):
             output = ""
             output += "<html><body>"
             output += "<h2>Okay, how about this: </h2>"
-            output += "<h1> %s </h1>" % messagecontent[0]
+            output += ("<h1> %s </h1>" % (messagecontent[0]))
 
             output += """
             <form method='POST' enctype='multipart/form-data' action='/hello'>
-            <h2>What would you like me to say?</h2><input name='message' type=
-            'text'><input type='submit' value='Submit'></form>"""
+            <h2>What would you like me to say?</h2>
+            <input name='message' type='text'>
+            <input type='submit' value='Submit'></form>"""
             output += "</body></html>"
             self.wfile.write(output.encode("utf-8"))
             print(output)
 
         except:
-            pass
+            print('Error!,problemo with POST')
 
 
 def main():
