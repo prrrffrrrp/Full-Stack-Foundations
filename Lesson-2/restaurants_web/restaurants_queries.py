@@ -29,4 +29,15 @@ def renameRest(rest_id, new_name):
     session.add(editRestaurant)
     session.commit()
 
-def restId()
+
+def restId(rest_name):
+    restaurantId = session.query(Restaurant.id).filter_by(name=rest_name).first()
+    return restaurantId[0]
+
+def deleteRest(rest_id):
+    pass
+
+#rst_ids = session.query(Restaurant).all()
+#for rst in rst_ids:
+#    print(rst.name, rst.id)
+
