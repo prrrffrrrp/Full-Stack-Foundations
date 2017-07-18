@@ -12,20 +12,15 @@ class webserverHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-type', 'text/html')
                 self.end_headers()
 
-                htmling = """
-                </h3><a href='/restaurants/{x_id}/edit'>Edit</a>
-                <br>
-                <a href=#>Delete</a>
-                <br>
-                <br>
-                <h3>"""
-
                 output = ''
-                output += "<html><body>"
                 output += "<h2><a href='/restaurants/new'>Make your own restaurant</a></h2>"
-                output += "<h3>{}</h3><a href=#>Edit</a><br><a href=#>Delete</a><br>\
-                            <br>".format((htmling).join(allRest()))
-                output += "</html></body>"
+                restData = allRest()
+                for rest in restData:
+                    output += "<html><body>"
+                    output += "<h3>{}</h3>".format(rest)
+                    output += "<a href='/restaurants/edit'>Edit</a><br>"
+                    output += "<a href=#>Delete</a><br><br>"
+
                 self.wfile.write(output.encode("utf-8"))
                 print(output)
                 return
