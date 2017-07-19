@@ -1,5 +1,4 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import sqlalchemy.exc
 import cgi
 from restaurants_queries import allRest, newRest, restId, renameRest
 
@@ -14,13 +13,15 @@ class webserverHandler(BaseHTTPRequestHandler):
                 self.end_headers()
 
                 output = ''
-                output += "<h2><a href='/restaurants/new'>Make your own restaurant</a></h2>"
+                output += """<h2><a href='/restaurants/new'>
+                            Make your own restaurant</a></h2>"""
                 output += "<br><br>"
                 restData = allRest()
                 for rest in restData:
                     output += "<html><body>"
                     output += "<h3>{}</h3>".format(rest)
-                    output += "<a href='/restaurants/{}/edit'>Edit</a><br>".format(restId(rest))
+                    output += """<a href='/restaurants/{}/edit'>Edit</a>
+                    <br>""".format(restId(rest))
                     output += "<a href=#>Delete</a><br><br>"
 
                 self.wfile.write(output.encode("utf-8"))
@@ -36,7 +37,8 @@ class webserverHandler(BaseHTTPRequestHandler):
                 output += """
                 <form method ='POST' enctype='multipart/form-data'>
                 <h1>make a new restaurant<h1>
-                <input name='rest_new_name' type='text'>
+                <input name='rest_new_name' type='text'
+                placeholder='Enter new restaurant name'>
                 <input type='submit' value='create' >
                 </form>"""
                 output += "</body></html>"
@@ -62,9 +64,6 @@ class webserverHandler(BaseHTTPRequestHandler):
 
         except IOError:
             self.send_error(404, 'File not found %s' % self.path)
-        except sqlalchemy.orm.exc.MultipleResultsFound:
-            self.send_error(500, 'There is more than one restaurant with this name')
-
 
     def do_POST(self):
         try:
@@ -82,8 +81,6 @@ class webserverHandler(BaseHTTPRequestHandler):
                 self.send_header('Location', '/restaurants')
                 self.end_headers()
 
-
-
             if self.path.endswith('/edit'):
                 ctype, pdict = cgi.parse_header(self.headers.get('content-type'))
                 pdict['boundary'] = bytes(pdict['boundary'], "utf-8")
@@ -92,13 +89,15 @@ class webserverHandler(BaseHTTPRequestHandler):
                     messagecontent = fields.get('change_name')
 
                 new_name = messagecontent[0].decode("utf-8")
-                renameRest(new_name)
+                url = self.path
+                url_elements = url.split('/')
+                rest_id = [e for e in url_elements if e.isdigit()]
+                renameRest(rest_id[0], new_name)
 
                 self.send_response(301)
                 self.send_header('Content-type', 'text-html')
+                self.send_header('Location', '/restaurants')
                 self.end_headers()
-
-
 
         except:
             print("No no, no no no no!")
