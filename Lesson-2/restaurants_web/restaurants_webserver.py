@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import cgi
-from restaurants_queries import allRest, newRest, restId, renameRest
+from restaurants_queries import allRest, newRest, restId, renameRest, deleteRest, restName
 
 
 class webserverHandler(BaseHTTPRequestHandler):
@@ -22,10 +22,28 @@ class webserverHandler(BaseHTTPRequestHandler):
                     output += "<h3>{}</h3>".format(rest)
                     output += """<a href='/restaurants/{}/edit'>Edit</a>
                     <br>""".format(restId(rest))
-                    output += "<a href=#>Delete</a><br><br>"
+                    output += """<a href='/restaurants/{}/delete'>Delete</a>
+                             <br><br>""".format(restId(rest))
 
                 self.wfile.write(output.encode("utf-8"))
                 return
+
+            if self.path.endswith('/delete'):
+                self.send_response(200)
+                self.send_header('Content-type', 'text/html')
+                self.end_headers()
+
+                rest_id = self.path.split('/')[2]
+                rest_name = restName(rest_id)
+                output = ''
+                output += '<html><body>'
+                output += "<h1>Are you sure you want to delete {}?<h1>".format(rest_name)
+                output += '''
+                <form method='POST' enctype='multipart/form-data'
+                    action='restaurants/{}/delete'>'''.format(rest_id)
+                output += "<input type='submit' value='delete'></form>"
+                output += '</body></html>'
+                self.wfile.write(output.encode("utf-8"))
 
             if self.path.endswith('restaurants/new'):
                 self.send_response(200)
@@ -89,10 +107,17 @@ class webserverHandler(BaseHTTPRequestHandler):
                     messagecontent = fields.get('change_name')
 
                 new_name = messagecontent[0].decode("utf-8")
-                url = self.path
-                url_elements = url.split('/')
-                rest_id = [e for e in url_elements if e.isdigit()]
-                renameRest(rest_id[0], new_name)
+                rest_id = self.path.split('/')[2]
+                renameRest(rest_id, new_name)
+
+                self.send_response(301)
+                self.send_header('Content-type', 'text-html')
+                self.send_header('Location', '/restaurants')
+                self.end_headers()
+
+            if self.path.endswith('/delete'):
+                del_id = self.path.split('/')[2]
+                deleteRest(del_id)
 
                 self.send_response(301)
                 self.send_header('Content-type', 'text-html')

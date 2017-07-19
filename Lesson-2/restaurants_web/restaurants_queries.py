@@ -34,10 +34,21 @@ def restId(rest_name):
     restaurantId = session.query(Restaurant.id).filter_by(name=rest_name).first()
     return restaurantId[0]
 
+def restName(rest_id):
+    restaurantName = session.query(Restaurant.name).filter_by(id=rest_id).one()
+    return restaurantName[0]
+
 def deleteRest(rest_id):
-    pass
+    deleteRestaurant = session.query(Restaurant).filter_by(id=rest_id).first()
+    session.delete(deleteRestaurant)
+    session.commit()
 
-#rst_ids = session.query(Restaurant).all()
-#for rst in rst_ids:
-#    print(rst.name, rst.id)
-
+# rst_ids = session.query(Restaurant).all()
+# for rst in rst_ids:
+#     print(rst.name, rst.id)
+#
+# deleteRest(25)
+#
+# rst_ids = session.query(Restaurant).all()
+# for rst in rst_ids:
+#     print(rst.name, rst.id)
