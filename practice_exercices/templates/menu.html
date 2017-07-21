@@ -1,8 +1,23 @@
 <html>
+  <head>
+    <link rel=stylesheet type=text/css href="{{url_for('static',
+    filename='flask_app1_styling.css')}}">
+  </head>
 
 <body>
 
 <h1>{{restaurant.name}}</h1>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+  {% for message in messages %}
+    <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
 
 <h4><a href={{url_for('newMenuItem', restaurant_id=restaurant.id)}}
     style='text-decoration:none; color:gray'>
