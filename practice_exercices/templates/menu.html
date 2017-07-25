@@ -5,48 +5,57 @@
   </head>
 
 <body>
-
-<h1>{{restaurant.name}}</h1>
-
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-
-<ul>
-  {% for message in messages %}
-    <li><strong>{{message}}</strong></li>
-  {% endfor %}
-</ul>
-{% endif %}
-{% endwith %}
-
-<h4><a href={{url_for('newMenuItem', restaurant_id=restaurant.id)}}
-    style='text-decoration:none; color:gray'>
-  Create a new menu item
-</a></h4>
-
-{% for i in items %}
-
-<div>
-
-<h4>{{i.name}}</h4>
-
-<p>{{i.description}}</p>
-
-<p> {{i.price}} </p>
-
-<a href={{url_for('editMenuItem', restaurant_id=restaurant.id,
-  menu_id=i.id)}}>Edit</a>
-
-<br>
-
-<a href={{url_for('deleteMenuItem', restaurant_id=restaurant.id,
-  menu_id=i.id)}}>Delete</a>
- 
-<br>
-<br>
-</div>
+  <div class='pane'>
+    <div class='header'>
+      <h1>{{restaurant.name}}</h1>
+    </div>
+    
+    <h4><a href={{url_for('newMenuItem', restaurant_id=restaurant.id)}}
+        style='text-decoration:none; color:gray'>
+      Create a new menu item
+    </a></h4>
 
 
-{% endfor %}
+    <div class='flash'>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+      <ul>
+        {% for message in messages %}
+          <li><strong>{{message}}</strong></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+    </div>
+
+        {% for i in items %}
+
+    <div class='name'>
+       <h4>{{i.name}}</h4>
+    </div>
+    <div class='description'>
+       <p>{{i.description}}</p>
+    </div>
+    <div class='price'>
+       <p> {{i.price}} </p>
+    </div>
+
+    <div class='editdeletepane'>
+       <a href={{url_for('editMenuItem', restaurant_id=restaurant.id,
+      menu_id=i.id)}}>Edit</a>
+
+    <br>
+
+      <a href={{url_for('deleteMenuItem', restaurant_id=restaurant.id,
+      menu_id=i.id)}}>Delete</a>
+    </div> 
+    <br>
+    <br>
+
+
+      {% endfor %}
+
+  </div>
 </body>
-
+</html>
