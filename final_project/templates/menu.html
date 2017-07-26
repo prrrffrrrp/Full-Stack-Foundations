@@ -6,12 +6,18 @@
   <body>
 
     <div>
-     <h1>{{restaurant[name]}}</h1>
+     <h1>{{restaurant['name']}}</h1>
     </div>
 
     <div>
       <h4><a href=#>Create a new menu item</a></h4>
     </div>
+
+    {% if not items %}
+
+      <p>You currently have no items.</p>
+
+    {% endif %}
 
     {% for i in items %}
 
