@@ -1,0 +1,42 @@
+<html>
+  <head>
+
+  </head>
+
+  <body>
+
+    <div>
+      <h1>Edit {{item['name']}}</h1>
+    </div>
+
+    <form method='post' action=#>
+      <p>Name:</p>
+      <input type='text' size='30' name='name' placeholder={{item['name']}}>
+      
+      <p>Description:</p>
+        <textarea name='description' rows='5' cols='60'></textarea>
+
+      <p>Price:</p>
+        <input type='text' size='10' name='price'>
+
+        <p>Course:</p>
+        <input type='radio' name='course' value='Entree'>Entree
+        <input type='radio' name='course' value='Appetizer'>Appetizer
+        <input type='radio' name='course' value='Dessert'>Dessert
+        <input type='radio' name='course' value='Beverage'>Beverage
+        <br>
+        <br>
+
+        <div>
+          <input type='submit' value='Edit item' name='edititem'>
+          <input type='submit' value='Cancel' name='cancel'>
+        </div>
+
+    </form> 
+
+
+
+
+  </body>
+
+</html>

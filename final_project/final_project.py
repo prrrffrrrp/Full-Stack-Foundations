@@ -10,39 +10,38 @@ def showRestaurants():
 
 @app.route('/restaurant/new')
 def newRestaurant():
-    return 'This page will be for making a new restaurant'
+    return render_template('newrestaurant.html')
 
 
 @app.route('/restaurant/<int:restaurant_id>/edit')
 def editRestaurant(restaurant_id):
-    return 'This page will edit restaurant %s' % restaurant_id
+    return render_template('editrestaurant.html', restaurant=restaurant)
 
 
 @app.route('/restaurant/<int:restaurant_id>/delete')
 def deleteRestaurant(restaurant_id):
-    return 'This page will delete restaurant %s' % restaurant_id
+    return render_template('deleterestaurant.html', restaurant=restaurant)
 
 
 @app.route('/restaurant/<int:restaurant_id>')
 @app.route('/restaurant/<int:restaurant_id>/menu')
 def showMenu(restaurant_id):
-    return 'This page will show the menu for restaurant %s' % restaurant_id
+    return render_template('menu.html', restaurant=restaurant, items=items)
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/new')
 def newMenuItem(restaurant_id):
-    return 'This page is for making a new menu item for restaurant {}'\
-                                                        .format(restaurant_id)
+    return render_template('newmenuitem.html')
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit')
 def editMenuItem(restaurant_id, menu_id):
-    return 'This page is for editing menu item %s' % menu_id
+    return render_template('editmenuitem.html', restaurant=restaurant, item=item)
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete')
 def deleteMenuItem(restaurant_id, menu_id):
-    return 'This page is for deleting menu item %s' % menu_id
+    return render_template('deletemenuitem.html', restaurant=restaurant, item=item)
 
 
 #Fake Restaurants

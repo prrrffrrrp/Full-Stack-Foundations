@@ -1,16 +1,28 @@
 <html>
-  <header>
-  </header>
+  <head>
+  </head>
 
   <body>
     <h1>What's there to eat?</h1>
 
     <h3><a href=#>New restaurant</a></h3>
     <br>
-    {{% for r in restaurants %}}
-    <h2>r</h2>
-    
-    
+
+    {% for r in restaurants %}
+
+    <div>
+      <h2><a href=#>{{r['name']}}</a></h2>
+    </div> 
+
+    <div>
+      <a href=#>Edit Restaurant</a>
+    </div>
+
+    <div>
+      <a href=#>Delete Restaurant</a>
+    </div>
+
+    {% endfor %} 
 
   </body>
 </html>
