@@ -11,7 +11,7 @@
     {% for r in restaurants %}
 
     <div>
-      <h2><a href=#>{{r['name']}}</a></h2>
+      <h2><a href={{url_for('showMenu', restaurant_id=r.id)}}>{{r.name}}</a></h2>
     </div> 
 
     <div>
