@@ -5,7 +5,7 @@
   <body>
     <h1>What's there to eat?</h1>
 
-    <h3><a href=#>New restaurant</a></h3>
+    <h3><a href={{url_for('newRestaurant')}}>New restaurant</a></h3>
     <br>
 
     {% for r in restaurants %}
@@ -15,7 +15,7 @@
     </div> 
 
     <div>
-      <a href=#>Edit Restaurant</a>
+      <a href={{url_for('editRestaurant', restaurant_id=r.id)}}>Edit Restaurant</a>
     </div>
 
     <div>

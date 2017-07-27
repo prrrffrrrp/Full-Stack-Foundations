@@ -9,21 +9,15 @@
 
     <form method='post' action=#>
 
-      <p>Edit name:</p>
-        <input type='text' name='editname' placeholder={{restaurant['name']}}
+      <p>Edit Restaurant:</p>
+        <input type='text' name='editname' placeholder='{{restaurant.name}}'
         size='30'>
-
-      <p>Edit address:</p>
-        <input type='text' name='editaddress' size='60'>
-
-      <p>Edit website:</p>
-        <input type='text' name='editwebsite' size='50'>
 
       <br>
       <br>
 
       <input type='submit' value='Edit'>
-      <input type='submit' value='Cancel'>
+      <a href={{url_for('showRestaurants')}}>Cancel</a>
 
     </form>
 
