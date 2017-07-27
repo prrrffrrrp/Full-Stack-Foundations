@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, redirect
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -17,8 +17,13 @@ def showRestaurants():
     return render_template('restaurants.html', restaurants=restaurants)
 
 
-@app.route('/restaurant/new')
+@app.route('/restaurant/new', methods=['POST', 'GET'])
 def newRestaurant():
+    if request.method == 'POST':
+        newRestaurant = Restaurant(name = request.form['name'])
+        session.add(newRestaurant)
+        session.commit()
+        return redirect(url_for('showRestaurants'))
 
     return render_template('newrestaurant.html')
 

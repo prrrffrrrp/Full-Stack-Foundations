@@ -7,22 +7,18 @@
     
     <h1>Add a new restaurant</h1>
 
-      <form action=# method='post'>
+    <form action={{url_for('newRestaurant')}} method='post'>
 
         <p>Name:</p>
           <input type='text' size='30' name='name'>
-
-        <p>Address:</p>
-          <input type='text' size='60' name='address'>
-
-        <p>Website:</p>
-          <input type='text' size='40' name='website'>
 
         <br>
         <br>
 
         <div>
-          <input type="submit" value='Add'>
+          <input type="submit" value='Add' name='add'>
+          <a href={{url_for('showRestaurants')}}>Cancel</a>
+
         </div>
           
      </form> 
