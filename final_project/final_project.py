@@ -96,9 +96,18 @@ def editMenuItem(restaurant_id, menu_id):
                                item=itemToEdit, menu_id=menu_id)
 
 
-@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete')
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete',
+           methods=['POST', 'GET'])
 def deleteMenuItem(restaurant_id, menu_id):
-    return render_template('deletemenuitem.html', restaurant=restaurant, item=item)
+    itemToDelete = session.query(MenuItem).filter_by(id=menu_id).one()
+
+    if request.method == 'POST':
+        session.delete(itemToDelete)
+        session.commit()
+        return redirect(url_for('showMenu', restaurant_id=restaurant_id))
+
+    return render_template('deletemenuitem.html', restaurant_id=restaurant_id,
+                           item=itemToDelete, menu_id=menu_id)
 
 
 # #Fake Restaurants
