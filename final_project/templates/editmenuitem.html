@@ -24,6 +24,13 @@
 
       <p>Course:</p>
 
+        {% if item.course == 'other' %}
+         <input type='radio' name='course' value='other' hidden checked>
+        {% else %}
+         <input type='radio' name='course' value='Appetizer' hidden>
+        {% endif %}
+
+
         {% if item.course == 'Appetizer' %}
          <input type='radio' name='course' value='Appetizer' checked>Appetizer
         {% else %}
