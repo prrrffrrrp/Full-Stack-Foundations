@@ -20,7 +20,7 @@ def showRestaurants():
 @app.route('/restaurant/new', methods=['POST', 'GET'])
 def newRestaurant():
     if request.method == 'POST':
-        newRestaurant = Restaurant(name = request.form['name'])
+        newRestaurant = Restaurant(name=request.form['name'])
         session.add(newRestaurant)
         session.commit()
         return redirect(url_for('showRestaurants'))
@@ -56,16 +56,32 @@ def deleteRestaurant(restaurant_id):
 def showMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(restaurant_id=restaurant_id).all()
-    return render_template('menu.html', restaurant=restaurant, items=items)
+    return render_template('menu.html', restaurant=restaurant, items=items,
+                           restaurant_id=restaurant_id)
 
 
-@app.route('/restaurant/<int:restaurant_id>/menu/new')
+@app.route('/restaurant/<int:restaurant_id>/menu/new', methods=['POST', 'GET'])
 def newMenuItem(restaurant_id):
-    return render_template('newmenuitem.html')
+    if request.method == 'POST':
+        newMenuItem = MenuItem(name=request.form['name'],
+                               description=request.form['description'],
+                               price=request.form['price'],
+                               course=request.form['course'],
+                               restaurant_id=restaurant_id)
+        session.add(newMenuItem)
+        session.commit()
+        return redirect(url_for('showMenu', restaurant_id=restaurant_id))
+
+    return render_template('newmenuitem.html', restaurant_id=restaurant_id)
 
 
-@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit')
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit',
+           methods=['POST', 'GET'])
 def editMenuItem(restaurant_id, menu_id):
+    itemToEdit = session.query(MenuItem).filter_by(restaurant_id=restaurant_id,
+                                                   id=menu_id).one()
+    if request.method == 'POST':
+       itemToEdit.name =
     return render_template('editmenuitem.html', restaurant=restaurant, item=item)
 
 

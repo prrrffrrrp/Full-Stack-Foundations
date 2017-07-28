@@ -10,7 +10,7 @@
     </div>
 
     <div>
-      <h4><a href=#>Create a new menu item</a></h4>
+      <h4><a href={{url_for('newMenuItem', restaurant_id=restaurant_id)}}>Create a new menu item</a></h4>
     </div>
 
     {% if not items %}
@@ -34,7 +34,8 @@
     </div>
 
     <div>
-      <a href=#>Edit Menu Item</a>
+      <a href={{url_for('editMenuItem', restaurant_id=restaurant_id,
+        menu_id=i.id)}}>Edit Menu Item</a>
     </div>
 
     <div>
