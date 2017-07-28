@@ -9,27 +9,54 @@
       <h1>Edit {{item['name']}}</h1>
     </div>
 
-    <form method='post' action=#>
+    <form method='post' action={{url_for('editMenuItem',
+      restaurant_id=restaurant_id, menu_id=menu_id)}}>
+        
       <p>Name:</p>
-      <input type='text' size='30' name='name' placeholder={{item['name']}}>
+      <input type='text' size='30' name='name' placeholder='{{item['name']}}'>
       
       <p>Description:</p>
-        <textarea name='description' rows='5' cols='60'></textarea>
+      <textarea name='description' rows='5' cols='60' placeholder=
+        '{{item['description']}}'></textarea>
 
       <p>Price:</p>
-        <input type='text' size='10' name='price'>
+      <input type='text' size='10' name='price' placeholder='{{item['price']}}'>
 
-        <p>Course:</p>
+      <p>Course:</p>
+
+        {% if item.course == 'Appetizer' %}
+         <input type='radio' name='course' value='Appetizer' checked>Appetizer
+        {% else %}
+         <input type='radio' name='course' value='Appetizer'>Appetizer
+        {% endif %}
+
+        <br>
+        {% if item.course == 'Entree' %}
+        <input type='radio' name='course' value='Entree' checked>Entree
+        {% else %}
         <input type='radio' name='course' value='Entree'>Entree
-        <input type='radio' name='course' value='Appetizer'>Appetizer
+        {% endif %}
+
+        <br>
+        {% if item.course == 'Dessert' %}
+        <input type='radio' name='course' value='Dessert' checked>Dessert
+        {% else %}
         <input type='radio' name='course' value='Dessert'>Dessert
+        {% endif %}
+
+        <br>
+        {% if item.course == 'Beverage' %}
+        <input type='radio' name='course' value='Beverage' checked>Beverage
+        {% else %}
         <input type='radio' name='course' value='Beverage'>Beverage
+        {% endif %}
+
         <br>
         <br>
 
         <div>
-          <input type='submit' value='Edit item' name='edititem'>
-          <input type='submit' value='Cancel' name='cancel'>
+          <input type='submit' value='Edit item'>
+          <a href={{url_for('showMenu', restaurant_id=restaurant_id)}}>Cancel</a>
         </div>
 
     </form> 
