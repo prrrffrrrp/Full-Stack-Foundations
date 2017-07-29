@@ -9,6 +9,23 @@
       <h1>Add a new item to the menu</h1>
     </div>
 
+    {% with messages = get_flashed_messages() %}
+
+      {% if messages %}
+
+      <ul>
+        {% for message in messages %}
+          
+          <li><strong>{{message}}</strong></li>
+
+        {% endfor %}
+
+      </ul>
+
+      {% endif %}
+    {% endwith %}
+
+
     <form method='post' action=#>
 
       <p>Name:</p>
@@ -25,9 +42,6 @@
 
       <p>Course:</p>
 
-      
-      <input type='radio' name='course' value='other' checked hidden>
-      <br>
       <input type='radio' name='course' value='Appetizer'>Appetizer
       <br>
       <input type='radio' name='course' value='Entree'>Entree
@@ -35,6 +49,7 @@
       <input type='radio' name='course' value='Dessert'>Dessert
       <br>
       <input type='radio' name='course' value='Beverage'>Beverage
+      <input type='radio' name='course' value='other' checked hidden>
       <br>
       <br>
 
