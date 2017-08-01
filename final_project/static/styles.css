@@ -1,0 +1,44 @@
+
+body {
+  font-family: Helvetica, Sans-serif;
+  max-width: 1080px;
+  margin: auto;
+  background-color: #fff;
+}
+
+h1 {
+  color: #a3c2c2;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+a.new_restaurant {
+  color: #FF4D4D;
+}
+
+a.title {
+  color: #669999;
+}
+
+a.subtitle {
+  color:#FF9999;
+}
+/*
+a a:link {
+  text-decoration: none;
+  color: #CC6633;
+}
+
+a a:visited{
+  text-decoration: none;
+  color: #CC6633;
+}
+
+a a:active{
+  text-decoration: none;
+  color: #CC6633;
+}
+*/

@@ -1,5 +1,7 @@
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',
+    filename='styles.css')}}">
   </head>
 
   <body>
@@ -21,24 +23,29 @@
       {% endif %}
     {% endwith %}
 
-    <h3><a href={{url_for('newRestaurant')}}>New restaurant</a></h3>
+    <h3><a class="new_restaurant" href={{url_for('newRestaurant')}}>New restaurant</a></h3>
     <br>
 
-    {% for r in restaurants %}
+      <div class="all_restaurants">
+        {% for r in restaurants %}
 
-    <div>
-      <h2><a href={{url_for('showMenu', restaurant_id=r.id)}}>{{r.name}}</a></h2>
+        <div class="restaurant">
+
+          <div>
+            <h2><a class="title" href={{url_for('showMenu', restaurant_id=r.id)}}>{{r.name}}</a></h2>
+          </div> 
+
+          <div>
+            <a class="subtitle" href={{url_for('editRestaurant', restaurant_id=r.id)}}>Edit Restaurant</a>
+          </div>
+
+          <div>
+            <a class="subtitle" href={{url_for('deleteRestaurant', restaurant_id=r.id)}}>Delete Restaurant</a>
+          </div>
+
+        </div>
+        {% endfor %} 
+
     </div> 
-
-    <div>
-      <a href={{url_for('editRestaurant', restaurant_id=r.id)}}>Edit Restaurant</a>
-    </div>
-
-    <div>
-      <a href={{url_for('deleteRestaurant', restaurant_id=r.id)}}>Delete Restaurant</a>
-    </div>
-
-    {% endfor %} 
-
   </body>
 </html>
