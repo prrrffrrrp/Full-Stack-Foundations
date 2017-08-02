@@ -1,29 +1,20 @@
-<html>
-  <head>
+{% extends "base.html" %}
 
-  </head>
-
-  <body>
-    
-    <h1>Add a new restaurant</h1>
+  {% block content %}
+  
+    <h2 class="page_title">Add a new restaurant</h2>
 
     <form action={{url_for('newRestaurant')}} method='post'>
 
-        <p>Name:</p>
+        <p class="title">Name:</p>
           <input type='text' size='30' name='name'>
 
         <br>
         <br>
 
         <div>
-          <input type="submit" value='Add' name='add'>
-          <a href={{url_for('showRestaurants')}}>Cancel</a>
+          <input class="button button_yes" type="submit" value='Add' name='add'>
+          <a class="button button_cancel" href={{url_for('showRestaurants')}}>Cancel</a>
 
         </div>
-          
-     </form> 
-
-  </body>
-
-</html>
-
+  {% endblock %}

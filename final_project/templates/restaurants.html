@@ -1,12 +1,8 @@
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',
-    filename='styles.css')}}">
-  </head>
+{% extends "base.html" %}
+  {% block content %}
 
-  <body>
-    <h1>What's there to eat?</h1>
-
+    <h3><a class="page_title create" href={{url_for('newRestaurant')}}>New Restaurant</a></h3>
+    <br>
     {% with messages = get_flashed_messages() %}
 
       {% if messages %}
@@ -23,13 +19,11 @@
       {% endif %}
     {% endwith %}
 
-    <h3><a class="new_restaurant" href={{url_for('newRestaurant')}}>New restaurant</a></h3>
-    <br>
 
-      <div class="all_restaurants">
+      <div class="W3-row-padding W3-padding-16 W3-center">
         {% for r in restaurants %}
 
-        <div class="restaurant">
+        <div class="W3-quarter">
 
           <div>
             <h2><a class="title" href={{url_for('showMenu', restaurant_id=r.id)}}>{{r.name}}</a></h2>
@@ -47,5 +41,8 @@
         {% endfor %} 
 
     </div> 
+
+    {% endblock %}
+
   </body>
 </html>

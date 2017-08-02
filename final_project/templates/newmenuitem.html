@@ -1,67 +1,44 @@
-<html>
-  <head>
+{% extends "base.html" %}
 
-  </head>
-
-  <body>
-
-    <div>
-      <h1>Add a new item to the menu</h1>
-    </div>
-
-    {% with messages = get_flashed_messages() %}
-
-      {% if messages %}
-
-      <ul>
-        {% for message in messages %}
-          
-          <li><strong>{{message}}</strong></li>
-
-        {% endfor %}
-
-      </ul>
-
-      {% endif %}
-    {% endwith %}
-
-
+  {% block content %}
+ 
     <form method='post' action=#>
 
-      <p>Name:</p>
+      <p class="title">Name:</p>
+
       <input type='text' size='30' name='name'>
 
-      <p>Description:</p>
+      <p class="title">Description:</p>
+
       <textarea name='description' rows='5' cols='60'></textarea>
 
-      <p>Price:</p>
-
+      <p class="title">Price:</p>
 
       <input type='text' size='10' name='price'>
         
 
-      <p>Course:</p>
+      <p class="title">Course:</p>
 
-      <input type='radio' name='course' value='Appetizer'>Appetizer
+      <input type='radio' name='course' value='Appetizer'><span
+        class="subtitle">Appetizer</span>
       <br>
-      <input type='radio' name='course' value='Entree'>Entree
+      <input type='radio' name='course' value='Entree'><span
+        class="subtitle">Entree</span>
       <br>
-      <input type='radio' name='course' value='Dessert'>Dessert
+      <input type='radio' name='course' value='Dessert'><span
+        class="subtitle">Dessert</span>
       <br>
-      <input type='radio' name='course' value='Beverage'>Beverage
+      <input type='radio' name='course' value='Beverage'><span
+        class="subtitle">Beverage</span>
       <input type='radio' name='course' value='other' checked hidden>
       <br>
       <br>
 
       <div>
-        <input type='submit' value='Add item'>
-        <a href={{url_for('showMenu', restaurant_id=restaurant_id)}}>Cancel</a>
+        <input class="button button_yes" type='submit' value='Add item'>
+        <a class="button button_cancel" href={{url_for('showMenu', restaurant_id=restaurant_id)}}>Cancel</a>
       </div>
 
     </form> 
 
-
-
-  </body>
-
-</html>
+  {% endblock %}
