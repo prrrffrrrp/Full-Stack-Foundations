@@ -1,7 +1,9 @@
 {% extends "base.html" %}
   {% block content %}
 
-    <h3><a class="page_title create" href={{url_for('newRestaurant')}}>New Restaurant</a></h3>
+  <div class="container-fluid">
+    <span><a class="page_title create" href={{url_for('newRestaurant')}}>New
+        Restaurant</a></span>
     <br>
     {% with messages = get_flashed_messages() %}
 
@@ -20,27 +22,28 @@
     {% endwith %}
 
 
-      <div class="W3-row-padding W3-padding-16 W3-center">
-        {% for r in restaurants %}
+    <div class="row pane">       
+      {% for r in restaurants %}
 
-        <div class="W3-quarter">
+      <div class="col-xs-12 col-sm-6">
 
-          <div>
-            <h2><a class="title" href={{url_for('showMenu', restaurant_id=r.id)}}>{{r.name}}</a></h2>
-          </div> 
+        <div>
+          <h2><a class="title" href={{url_for('showMenu', restaurant_id=r.id)}}>{{r.name}}</a></h2>
+        </div> 
 
-          <div>
-            <a class="subtitle" href={{url_for('editRestaurant', restaurant_id=r.id)}}>Edit Restaurant</a>
-          </div>
-
-          <div>
-            <a class="subtitle" href={{url_for('deleteRestaurant', restaurant_id=r.id)}}>Delete Restaurant</a>
-          </div>
-
+        <div>
+          <a class="subtitle" href={{url_for('editRestaurant', restaurant_id=r.id)}}>Edit Restaurant</a>
         </div>
-        {% endfor %} 
 
-    </div> 
+        <div>
+          <a class="subtitle" href={{url_for('deleteRestaurant', restaurant_id=r.id)}}>Delete Restaurant</a>
+        </div>
+
+      </div>
+      {% endfor %} 
+
+    </div>   
+  </div> 
 
     {% endblock %}
 

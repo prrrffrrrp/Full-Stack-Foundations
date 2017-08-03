@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 
   {% block content %}
-  
+  <div class="pane">  
     <h2 class="page_title">Add a new restaurant</h2>
 
     <form action={{url_for('newRestaurant')}} method='post'>
 
-        <p class="title">Name:</p>
-          <input type='text' size='30' name='name'>
+      <p class="title">Name:</p>
+      <input type='text' size='30' name='name'>
 
-        <br>
-        <br>
+      <br>
+      <br>
 
-        <div>
-          <input class="button button_yes" type="submit" value='Add' name='add'>
-          <a class="button button_cancel" href={{url_for('showRestaurants')}}>Cancel</a>
+      <div>
+        <input class="button button_yes" type="submit" value='Add' name='add'>
+        <a class="button button_cancel" href={{url_for('showRestaurants')}}>Cancel</a>
 
-        </div>
-  {% endblock %}
+      </div>
+    </div> 
+    {% endblock %}

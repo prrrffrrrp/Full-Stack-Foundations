@@ -2,9 +2,9 @@
 
   {% block content %}
  
-    <div>
-      <h3 ><a class="page_title create" href={{url_for('newMenuItem',
-          restaurant_id=restaurant_id)}}>New Menu Item</a></h3>
+    <div class="container-fluid">
+      <span ><a class="page_title create" href={{url_for('newMenuItem',
+          restaurant_id=restaurant_id)}}>New Menu Item</a></span>
     </div>
     {% with messages = get_flashed_messages() %}
 

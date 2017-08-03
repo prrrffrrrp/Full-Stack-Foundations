@@ -1,11 +1,14 @@
 <html>
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{url_for('static',
     filename='styles.css')}}">
   </head>
 
   <body>
-    <a href="{{url_for('showRestaurants')}}"><h1>What's there to eat?</h1></a>
+    <a href="{{url_for('showRestaurants')}}"><h1><b>What's there to eat?</b></h1></a>
       
     {% block content %}
     {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
   {% block content %}
-
+  <div class="pane">
     <h2 class="page_title">Edit restaurant</h2>
 
     <form method='post' action={{url_for('editRestaurant',
@@ -18,5 +18,5 @@
       <a class="button button_cancel" href={{url_for('showRestaurants')}}>Cancel</a>
 
     </form>
-
+  </div>
   {% endblock %}

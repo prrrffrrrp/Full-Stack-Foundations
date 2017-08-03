@@ -10,9 +10,10 @@ h1 {
   color: #FF4D4D;
   text-align: center;
   background-color: #a3c2c2;
-  height: 100px;
+  height: 120px;
   padding-top: 30px;
-  font-size: 2em;
+  font-size: 3em;
+  font-style: bold;
   border: 2px solid;
   border-radius: 25px;
   border-color: #669999;
@@ -22,13 +23,13 @@ p {
   font-size:0.9em;
 }
 
-a {
+a, a:link, a:hover {
   text-decoration: none;
 }
 
 .create {
   display: inline-block;
-  margin: -70px 10px 5px;  
+  margin: -55px 10px 5px;  
   float: right;
   background: #ffffee;
   padding: 5px;
@@ -38,7 +39,7 @@ a {
 
 .pane {
   position:absolute;
-  max-width: 800px;
+  width: 800px;
   border: 2px solid;
   border-radius: 25px;
   padding: 10px;
@@ -47,16 +48,17 @@ a {
   background-color: #ffffee;
 }
 
-.page_title {
+.page_title,.page_title:visited, .page_title:hover {
   color: #FF4D4D;
+  font-size: 16px;
 }
 
-.title {
+.title,.title:visited, .title:hover {
   color: #669999;
 }
 
 
-.subtitle {
+.subtitle, .subtitle:hover {
   color:#FF9999;
   font-size: 13px;
 }
@@ -81,5 +83,9 @@ a {
 
 .button_cancel:hover {
   background-color: #FF4D4D;
+  color:white;
 }
 
+.col-sm-6 {
+  padding: 15px 20px;
+}
