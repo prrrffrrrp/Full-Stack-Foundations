@@ -28,9 +28,11 @@
 
       <div class="col-xs-12 col-sm-6">
 
-        <div>
+        {% if r.name|length > 20 %}
+
+         <div>
           <h2><a class="title" href={{url_for('showMenu', restaurant_id=r.id)}}
-              title='{{r.name}}' >{{r.name}}</a></h2>
+              title='{{r.name}}' >{{r.name[:17]}}...</a></h2>
         </div> 
 
         <div>
@@ -41,10 +43,25 @@
           <a class="subtitle" href={{url_for('deleteRestaurant', restaurant_id=r.id)}}>Delete Restaurant</a>
         </div>
 
-      </div>
+      {% else %}
+
+        <div>
+          <h2><a class="title" href={{url_for('showMenu', restaurant_id=r.id)}}>{{r.name}}</a></h2>
+        </div> 
+
+        <div>
+          <a class="subtitle" href={{url_for('editRestaurant', restaurant_id=r.id)}}>Edit Restaurant</a>
+        </div>
+
+        <div>
+          <a class="subtitle" href={{url_for('deleteRestaurant', restaurant_id=r.id)}}>Delete Restaurant</a>
+        </div>
+
+      {% endif %}
+      
+    </div>   
       {% endfor %} 
 
-    </div>   
   </div> 
 
     {% endblock %}
